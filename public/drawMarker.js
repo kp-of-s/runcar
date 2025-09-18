@@ -24,7 +24,7 @@ export function initMarkers() {
         ['marker/TG.csv', document.getElementById("tollgate_marker"), true, 'resource/marker1.png', 'tg'],
         ['marker/IC.csv', document.getElementById("interchange_marker"), true, 'resource/marker2.png', 'ic'],
         ['marker/JC.csv', document.getElementById("junction_marker"), true, 'resource/marker3.png', 'jc'],
-        ['marker/RA.csv', document.getElementById("restarea_marker"), true, 'resource/marker3.png', 'ra']
+        ['marker/RA.csv', document.getElementById("restarea_marker"), true, 'resource/marker4.png', 'ra']
     ];
 
     for (const p of params) {
@@ -49,9 +49,9 @@ export function initMarkers() {
                         map: initStatus ? nmap : null,
                         icon: {
                             url: icon_image,
-                            size: new naver.maps.Size(15, 20),
-                            scaledSize: new naver.maps.Size(15, 20),
-                            anchor: new naver.maps.Point(7, 20)
+                            size: new naver.maps.Size(20, 20),
+                            scaledSize: new naver.maps.Size(20, 20),
+                            anchor: new naver.maps.Point(10, 10)
                         }
                     });
 
