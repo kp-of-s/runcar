@@ -1,5 +1,3 @@
-import { getMap } from './drawMap.js';
-
 function parseCSV(text) {
     const lines = text.trim().split('\n');
     const headers = lines.shift().split(',');
@@ -15,20 +13,11 @@ function parseCSV(text) {
 
 const tollgateClass = 'tg';
 const interchangeJunctionClass = 'ijc';
-const restareaClass = 'ra';
+const restareaClass = 'ra';  // ✅ 수정
 
 let markers = {};
-let nmap;
 
-export function initMarkers() {
-    nmap = getMap();
-    
-    const params = [
-        ['marker/TG.csv', document.getElementById("tollgate_marker"), true, 'resource/marker1.png', 'tg'],
-        ['marker/ICJC.csv', document.getElementById("interchange_marker"), true, 'resource/marker2.png', 'ijc'],
-        ['marker/RA.csv', document.getElementById("restarea_marker"), true, 'resource/marker3.png', 'ra']
-    ];
-
+function initMarkers(params) {
     for (const p of params) {
         const csvFile = p[0];
         const part = p[1];
@@ -101,8 +90,8 @@ export function initMarkers() {
     }
 }
 
-export const selectMarkers = clss => {
-    document.querySelectorAll('input.' + clss).forEach(ckbx => {
+const selectMarkers = clss => {
+    document.querySelectorAll('input.' + clss).forEach(ckbx => {   // ✅ 수정
         if (!ckbx.checked) {
             ckbx.checked = true;
             addMarker(clss, ckbx.dataset.key);
@@ -110,8 +99,8 @@ export const selectMarkers = clss => {
     });
 };
 
-export const deselectMarkers = clss => {
-    document.querySelectorAll('input.' + clss).forEach(ckbx => {
+const deselectMarkers = clss => {
+    document.querySelectorAll('input.' + clss).forEach(ckbx => {   // ✅ 수정
         if (ckbx.checked) {
             ckbx.checked = false;
             delMarker(clss, ckbx.dataset.key);
@@ -125,7 +114,6 @@ const addMarker = (clss, key) => {
         markers[clss][key].setMap(nmap);
     }
 };
-
 const delMarker = (clss, key) => {
     if (markers[clss] && markers[clss][key]) {
         markers[clss][key].setMap(null);
