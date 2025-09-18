@@ -49,9 +49,9 @@ export function initMarkers() {
                         map: initStatus ? nmap : null,
                         icon: {
                             url: icon_image,
-                            size: new naver.maps.Size(20, 20),
-                            scaledSize: new naver.maps.Size(20, 20),
-                            anchor: new naver.maps.Point(10, 10)
+                            size: new naver.maps.Size(10, 10),
+                            scaledSize: new naver.maps.Size(10, 10),
+                            anchor: new naver.maps.Point(5, 5)
                         }
                     });
 
