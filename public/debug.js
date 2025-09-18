@@ -65,7 +65,7 @@ export function testApiKey(apiKey) {
 export function testNaverMapApi(apiKey) {
   return new Promise((resolve, reject) => {
     const testScript = document.createElement('script');
-    testScript.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${apiKey}`;
+    testScript.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${apiKey}`;
     
     testScript.onload = () => {
       console.log('네이버 지도 API 로드 테스트 성공');

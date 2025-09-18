@@ -53,7 +53,7 @@ async function initApp() {
 
     // 네이버 지도 초기화
     const script = document.createElement('script');
-    script.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${naverKey}`;
+    script.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=${naverKey}`;
     document.head.appendChild(script);
 
     script.onload = () => {
