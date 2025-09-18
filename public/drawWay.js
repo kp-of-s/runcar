@@ -50,7 +50,7 @@ export function initWays() {
 						strokeLineCap: 'round',
 						strokeLineJoin: 'round',
 						strokeWeight: strokeweight,
-						clickable: true
+						clickable: 'true'
 					});
 
 					ways[wayNameMangle] = {
