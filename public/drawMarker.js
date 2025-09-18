@@ -14,7 +14,6 @@ function parseCSV(text) {
     });
 }
 
-const markerClasses = ['tg', 'ijc', 'ra']; // 톨게이트, 나들목, 휴게소
 let markers = {}; // { clss: [marker, ...] }
 let nmap;
 
@@ -23,7 +22,8 @@ export function initMarkers() {
 
     const params = [
         ['marker/TG.csv', document.getElementById("tollgate_marker"), true, 'resource/marker1.png', 'tg'],
-        ['marker/ICJC.csv', document.getElementById("interchange_marker"), true, 'resource/marker2.png', 'ijc'],
+        ['marker/IC.csv', document.getElementById("interchange_marker"), true, 'resource/marker2.png', 'ic'],
+        ['marker/JC.csv', document.getElementById("junction_marker"), true, 'resource/marker3.png', 'jc'],
         ['marker/RA.csv', document.getElementById("restarea_marker"), true, 'resource/marker3.png', 'ra']
     ];
 

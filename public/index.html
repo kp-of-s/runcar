@@ -46,9 +46,9 @@
                 </div>
             </div>
 
-            <!-- 아래쪽 세 카드: 톨게이트, 나들목, 휴게소 -->
+            <!-- 아래쪽 네 카드: 톨게이트, 나들목, 휴게소, 분기점 -->
             <div class="row h-50">
-                <div class="col-4 h-100">
+                <div class="col-3 h-100">
                     <div class="co h-100">
                         <div class="c1">
                             <span>톨게이트 <div style="color:#00AFFF;">연청색</div></span>
@@ -60,19 +60,34 @@
                         <div id="tollgate_marker" class="wayslist"></div>
                     </div>
                 </div>
-                <div class="col-4 h-100">
+
+                <div class="col-3 h-100">
                     <div class="co h-100">
                         <div class="c1">
                             <span>나들목 <div style="color:#00FF00;">녹색</div></span>
                             <div>
-                                <button type="button" onclick="selectMarkers('ijc')">Select All</button>
-                                <button type="button" onclick="deselectMarkers('ijc')">Deselect All</button>
+                                <button type="button" onclick="selectMarkers('ic')">Select All</button>
+                                <button type="button" onclick="deselectMarkers('ic')">Deselect All</button>
                             </div>
                         </div>
                         <div id="interchange_marker" class="wayslist"></div>
                     </div>
                 </div>
-                <div class="col-4 h-100">
+
+                <div class="col-3 h-100">
+                    <div class="co h-100">
+                        <div class="c1">
+                            <span>분기점 <div style="color:#FFA500;">주황색</div></span>
+                            <div>
+                                <button type="button" onclick="selectMarkers('jc')">Select All</button>
+                                <button type="button" onclick="deselectMarkers('jc')">Deselect All</button>
+                            </div>
+                        </div>
+                        <div id="junction_marker" class="wayslist"></div>
+                    </div>
+                </div>
+
+                <div class="col-3 h-100">
                     <div class="co h-100">
                         <div class="c1">
                             <span>휴게소 <div style="color:#800080;">자색</div></span>
