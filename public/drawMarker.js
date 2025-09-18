@@ -1,3 +1,6 @@
+// markerManager.js
+import { getMap } from './drawMap.js';
+
 function parseCSV(text) {
     const lines = text.trim().split('\n');
     const headers = lines.shift().split(',');
@@ -11,36 +14,39 @@ function parseCSV(text) {
     });
 }
 
-const tollgateClass = 'tg';
-const interchangeJunctionClass = 'ijc';
-const restareaClass = 'ra';  // ✅ 수정
+const markerClasses = ['tg', 'ijc', 'ra']; // 톨게이트, 나들목, 휴게소
+let markers = {}; // { clss: [marker, ...] }
+let nmap;
 
-let markers = {};
+export function initMarkers() {
+    nmap = getMap();
 
-function initMarkers(params) {
+    const params = [
+        ['marker/TG.csv', document.getElementById("tollgate_marker"), true, 'resource/marker1.png', 'tg'],
+        ['marker/ICJC.csv', document.getElementById("interchange_marker"), true, 'resource/marker2.png', 'ijc'],
+        ['marker/RA.csv', document.getElementById("restarea_marker"), true, 'resource/marker3.png', 'ra']
+    ];
+
     for (const p of params) {
-        const csvFile = p[0];
-        const part = p[1];
-        const init_status = p[2];
-        const icon_image = p[3];
-        const clss = p[4];
+        const [csvFile, part, initStatus, icon_image, clss] = p;
+
+        if (!markers[clss]) markers[clss] = [];
 
         fetch(csvFile)
             .then(res => res.text())
             .then(text => {
                 const data = parseCSV(text);
-                if (!markers[clss]) markers[clss] = {};
 
-                for (let item of data) {
+                data.forEach((item, idx) => {
                     const lat = parseFloat(item.lat);
                     const lon = parseFloat(item.lon);
-                    if (isNaN(lat) || isNaN(lon)) continue;
+                    if (isNaN(lat) || isNaN(lon)) return;
 
                     const position = new naver.maps.LatLng(lat, lon);
 
                     const marker = new naver.maps.Marker({
-                        position: position,
-                        map: init_status ? nmap : null,
+                        position,
+                        map: initStatus ? nmap : null,
                         icon: {
                             url: icon_image,
                             size: new naver.maps.Size(15, 20),
@@ -49,10 +55,7 @@ function initMarkers(params) {
                         }
                     });
 
-                    // key: 시설명 + 좌표
-                    const key = `${item.시설명}_${lat}_${lon}`;
-                    markers[clss][key] = marker;
-
+                    // InfoWindow
                     const infowindow = new naver.maps.InfoWindow({
                         content: `
                           <div style="padding:5px; max-width:200px;">
@@ -67,16 +70,19 @@ function initMarkers(params) {
                     naver.maps.Event.addListener(marker, 'mouseover', () => infowindow.open(nmap, marker));
                     naver.maps.Event.addListener(marker, 'mouseout', () => infowindow.close());
 
+                    markers[clss].push(marker);
+                    const markerIndex = markers[clss].length - 1;
+
                     // 체크박스 UI
                     if (part) {
                         const ckbx = document.createElement('input');
                         ckbx.type = 'checkbox';
-                        ckbx.checked = init_status;
+                        ckbx.checked = initStatus;
                         ckbx.className = clss;
-                        ckbx.dataset.key = key;
+                        ckbx.dataset.index = markerIndex;
                         ckbx.onchange = () => {
-                            if (ckbx.checked) addMarker(clss, key);
-                            else delMarker(clss, key);
+                            const idx = ckbx.dataset.index;
+                            markers[clss][idx].setMap(ckbx.checked ? nmap : null);
                         };
                         part.appendChild(ckbx);
 
@@ -85,37 +91,28 @@ function initMarkers(params) {
                         part.appendChild(label);
                         part.appendChild(document.createElement('br'));
                     }
-                }
+                });
             });
     }
 }
 
-const selectMarkers = clss => {
-    document.querySelectorAll('input.' + clss).forEach(ckbx => {   // ✅ 수정
+// 전체 선택/해제
+export const selectMarkers = clss => {
+    document.querySelectorAll('input.' + clss).forEach(ckbx => {
+        const idx = ckbx.dataset.index;
         if (!ckbx.checked) {
             ckbx.checked = true;
-            addMarker(clss, ckbx.dataset.key);
+            markers[clss][idx].setMap(nmap);
         }
     });
 };
 
-const deselectMarkers = clss => {
-    document.querySelectorAll('input.' + clss).forEach(ckbx => {   // ✅ 수정
+export const deselectMarkers = clss => {
+    document.querySelectorAll('input.' + clss).forEach(ckbx => {
+        const idx = ckbx.dataset.index;
         if (ckbx.checked) {
             ckbx.checked = false;
-            delMarker(clss, ckbx.dataset.key);
+            markers[clss][idx].setMap(null);
         }
     });
-};
-
-// 개별 제어 함수
-const addMarker = (clss, key) => {
-    if (markers[clss] && markers[clss][key]) {
-        markers[clss][key].setMap(nmap);
-    }
-};
-const delMarker = (clss, key) => {
-    if (markers[clss] && markers[clss][key]) {
-        markers[clss][key].setMap(null);
-    }
 };
