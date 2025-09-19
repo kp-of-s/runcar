@@ -41,7 +41,7 @@ export function diagnoseApiConnection() {
 
 // API 키 테스트 함수
 export function testApiKey(apiKey) {
-  if (!apiKey || apiKey === 'YOUR_NAVER_MAP_KEY_HERE') {
+  if (!apiKey) {
     console.error('API 키가 설정되지 않았습니다.');
     return false;
   }

@@ -1,5 +1,5 @@
 import { initMap } from './drawMap.js';
-import { initWays, selectMW, deselectMW, selectHW, deselectHW } from './drawWay.js';
+import { initWays, selectWays, deselectWays } from './drawWay.js';
 import { initMarkers, selectMarkers, deselectMarkers } from './drawMarker.js';
 import { loadData } from './inputData.js';
 import { LOCAL_CONFIG } from './config.js';
@@ -77,10 +77,8 @@ async function initApp() {
         console.log('기타 데이터 로드 완료');
         
         // 전역 함수 등록 (HTML에서 사용)
-        window.selectMW = selectMW;
-        window.deselectMW = deselectMW;
-        window.selectHW = selectHW;
-        window.deselectHW = deselectHW;
+        window.selectWays = selectWays;
+        window.deselectWays = deselectWays;
         window.selectMarkers = selectMarkers;
         window.deselectMarkers = deselectMarkers;
         
