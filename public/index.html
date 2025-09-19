@@ -10,21 +10,23 @@
 </head>
 <body>
 <div class="container-fluid h-100">
-    <div class="row h-100">
+    <div class="row h-100 flex-column flex-lg-row">
         <!-- 좌측 지도 -->
-        <div class="col-6">
-            <div id="map"></div>
+        <div class="col-12 col-lg-6 flex-fill">
+            <div id="map" class="h-100"></div>
         </div>
 
         <!-- 우측 옵션 패널 -->
-        <div class="col-6 options">
+        <div class="col-12 col-lg-6 h-50 h-lg-100 options">
             <!-- 위쪽 두 카드: 자동차전용도로, 고속도로 -->
-            <div class="row h-50">
+            <div class="row h-100">
                 <div class="col-6 h-100">
                     <div class="co h-100">
-                        <div class="c1">
-                            <span>자동차전용도로 <div style="color:FF0000;">적색</div></span>
-                            <div>
+                        <div class="c1 d-flex flex-column align-items-start gap-1">
+                            <div class="label-text">
+                                자동차전용도로 <span class="label-color" style="color:#FF0000;">적색</span>
+                            </div>
+                            <div class="btn-group">
                                 <button type="button" onclick="selectWays('mw')">Select All</button>
                                 <button type="button" onclick="deselectWays('mw')">Deselect All</button>
                             </div>
@@ -34,9 +36,11 @@
                 </div>
                 <div class="col-6 h-100">
                     <div class="co h-100">
-                        <div class="c1">
-                            <span>고속도로 <div style="color:#0000FF;">청색</div></span>
-                            <div>
+                        <div class="c1 d-flex flex-column align-items-start gap-1">
+                            <div class="label-text">
+                                고속도로 <span class="label-color" style="color:#0000FF;">청색</span>
+                            </div>
+                            <div class="btn-group">
                                 <button type="button" onclick="selectWays('hw')">Select All</button>
                                 <button type="button" onclick="deselectWays('hw')">Deselect All</button>
                             </div>
@@ -46,13 +50,15 @@
                 </div>
             </div>
 
-            <!-- 아래쪽 네 카드: 톨게이트, 나들목, 휴게소, 분기점 -->
-            <div class="row h-50">
+            <!-- 아래쪽 네 카드: 톨게이트, 나들목, 분기점, 휴게소 -->
+            <div class="row h-100">
                 <div class="col-3 h-100">
                     <div class="co h-100">
-                        <div class="c1">
-                            <span>톨게이트 <div style="color:#00AFFF;">연청색</div></span>
-                            <div>
+                        <div class="c1 d-flex flex-column align-items-start gap-1">
+                            <div class="label-text">
+                                톨게이트 <span class="label-color" style="color:#00AFFF;">연청색</span>
+                            </div>
+                            <div class="btn-group">
                                 <button type="button" onclick="selectMarkers('tg')">Select All</button>
                                 <button type="button" onclick="deselectMarkers('tg')">Deselect All</button>
                             </div>
@@ -63,9 +69,11 @@
 
                 <div class="col-3 h-100">
                     <div class="co h-100">
-                        <div class="c1">
-                            <span>나들목 <div style="color:#00FF00;">녹색</div></span>
-                            <div>
+                        <div class="c1 d-flex flex-column align-items-start gap-1">
+                            <div class="label-text">
+                                나들목 <span class="label-color" style="color:#00FF00;">녹색</span>
+                            </div>
+                            <div class="btn-group">
                                 <button type="button" onclick="selectMarkers('ic')">Select All</button>
                                 <button type="button" onclick="deselectMarkers('ic')">Deselect All</button>
                             </div>
@@ -76,9 +84,11 @@
 
                 <div class="col-3 h-100">
                     <div class="co h-100">
-                        <div class="c1">
-                            <span>분기점 <div style="color:#FFA500;">주황색</div></span>
-                            <div>
+                        <div class="c1 d-flex flex-column align-items-start gap-1">
+                            <div class="label-text">
+                                분기점 <span class="label-color" style="color:#FFA500;">주황색</span>
+                            </div>
+                            <div class="btn-group">
                                 <button type="button" onclick="selectMarkers('jc')">Select All</button>
                                 <button type="button" onclick="deselectMarkers('jc')">Deselect All</button>
                             </div>
@@ -89,9 +99,11 @@
 
                 <div class="col-3 h-100">
                     <div class="co h-100">
-                        <div class="c1">
-                            <span>휴게소 <div style="color:#800080;">자색</div></span>
-                            <div>
+                        <div class="c1 d-flex flex-column align-items-start gap-1">
+                            <div class="label-text">
+                                휴게소 <span class="label-color" style="color:#800080;">자색</span>
+                            </div>
+                            <div class="btn-group">
                                 <button type="button" onclick="selectMarkers('ra')">Select All</button>
                                 <button type="button" onclick="deselectMarkers('ra')">Deselect All</button>
                             </div>
@@ -100,6 +112,8 @@
                     </div>
                 </div>
             </div>
+        </div>
+
 
         </div>
     </div>

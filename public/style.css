@@ -1,9 +1,13 @@
 html, body {
     height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto; 
     margin: 0;
     padding: 0;
-    overflow: hidden; /* 페이지 전체 스크롤 제거 */
     font-family: "Noto Sans KR", sans-serif;
+}
+.container-fluid, .row.flex-column.flex-lg-row {
+    height: 100%;
 }
 
 #map {
@@ -22,25 +26,38 @@ html, body {
 .co {
     display: flex;
     flex-direction: column;
+    height: 100%;
     border: 1px solid #ddd;
     border-radius: 6px;
     background: #fafafa;
     padding: 8px;
     margin-bottom: 10px;
-    height: 100%;
 }
 
 .c1 {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 600;
+    flex-direction: column; /* 텍스트 위, 버튼 아래 */
     margin-bottom: 6px;
+    font-weight: 600;
 }
 
+.label-text {
+    white-space: nowrap;          /* 텍스트 줄바꿈 방지 */
+    overflow: hidden;             /* 넘치는 텍스트 숨김 */
+    text-overflow: ellipsis;      /* 말줄임 표시 */
+    margin-bottom: 4px;           /* 텍스트-버튼 간 간격 */
+}
+
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;              /* 화면 좁아도 버튼이 줄바꿈 가능 */
+    gap: 4px;                      /* 버튼 간 간격 */
+}
+
+
 .wayslist {
-    flex: 1;
-    overflow-y: auto; /* 내부 스크롤 */
+    flex-grow: 1; /* 남은 공간 채우기 */
+    overflow-y: auto;
     font-size: 13px;
     line-height: 1.5;
 }
@@ -48,4 +65,11 @@ html, body {
 .co span div {
     display: inline-block;
     margin-left: 4px;
+}
+
+@media (min-width: 992px) {
+    html, body {
+        height: 100%;   /* PC에서는 높이 고정 */
+        overflow: hidden; /* 전체 페이지 스크롤 제거 */
+    }
 }
